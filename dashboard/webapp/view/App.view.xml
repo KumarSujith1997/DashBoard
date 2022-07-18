@@ -1,0 +1,285 @@
+<mvc:View controllerName="dashboard.dashboard.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:card="sap.f.cards"
+    xmlns:f="sap.f"  
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:LayoutData="sap.ui.core.LayoutData"
+    xmlns:viz.data="sap.viz.ui5.data">
+    <App id="iDApp">
+     <Page id="iDPage">
+            <Panel id='settingsPanel'>
+                <content>
+                    <HBox id="idHorizontalLayout">
+                    <VBox id="card1VBox1">
+                        <f:Card id="idFavorite">
+                            <f:content>
+                                <VBox id="card1VerticalLayout" class="box" alignContent="Stretch" width="100%" fitContainer="true"> 
+                                    <IconTabHeader id="card1conTabHeader"  select="onSelectionChange">
+                                         
+                                        <items>
+                                       
+                                            <IconTabFilter id="card1IconTabFilter1" key="" text="My favorites" />
+                                            
+                                            <IconTabFilter id="card1IconTabFilter2" key="" text="My recent records"/>
+                                            
+                                        </items>
+                                        
+                                    </IconTabHeader>
+                                    <HBox id="card1HBox3" alignItems="Center">
+                                        <Text id="card1Text5" text="Viewing :" wrapping="false" class="sapUiSmallMargin"/>
+                                        <MultiComboBox id="card1MultiComboBox" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop" width="150px" selectionFinish="onSelectionChange" selectionChange="onSelectionChange" items="{RecordTypeModel>/}">
+                                            <core:Item id="_IDGenItem" text="{RecordTypeModel>RecordTypeText}"/>
+                                        </MultiComboBox>
+                                    </HBox>
+                                    
+                                        <List id="card1List"  noDataText="No Record Found" items="{ path: 'Card1RecModel>/',
+                                                                        filters: {path: 'IsFavorite', operator: 'EQ', value1: true },
+                                                                        parameters:{
+                                                                        }}" >
+                                            <headerToolbar>
+                                                <OverflowToolbar id="_IDGenOverflowToolbar1">
+                                                    <content>
+                                                        <!-- <Title id="_IDGenTitle4" text="Products" level="H2"/> -->
+                                                        <Select id="state" selectedKey="Inactive" change="handleSelectChange">
+                                                            <items>
+                                                                <core:Item id="_IDGenItem1" key="Latest" text="Latest" />
+                                                                <core:Item id="_IDGenItemx" key="Old" text="Active" />
+                                                            </items>
+                                                        </Select>
+                                                        <ToolbarSpacer id="_IDGenToolbarSpacer1"/>
+                                                        <Text id="_IDRankedByCard1" text=""></Text>
+                                                    </content>
+                                                </OverflowToolbar>
+                                            </headerToolbar>
+                                            <CustomListItem id="_IDGenCustomListItem2" visible="{Card1RecModel>visible}">
+                                                <VBox id="_IDGenHBox2" alignItems="Stretch" alignContent="Center" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+                                                        <Text id="idObjectDesc" text="{Card1RecModel>ObjectDescr}" visible="true"/>
+                                                        <Text id="idRecordTypeText" text="{Card1RecModel>RecordTypeText}" visible="true"/>
+                                                </VBox>
+                                            </CustomListItem>
+                                        </List>
+                                        
+                                        <FlexBox id="idControl"
+                                            alignItems="Start"
+                                            justifyContent="Center">
+                                            <HBox id="ss" alignItems="Center" >
+                                            <Button id="idB"  icon="sap-icon://nav-back" press="Buttonclick"></Button>  
+                                            <Button id="idF"  icon="sap-icon://navigation-right-arrow" press="Buttonclick"></Button>   
+                                        </HBox>
+                                        </FlexBox>
+                                </VBox>
+                            </f:content>
+                       
+                        </f:Card>
+                        <f:Card id="_IDGenCard6" class="sapUiSmallMarginTop">
+                            <f:header>
+                                <card:Header id="_IDGenHeader2" title="My Inbox" subtitle="" iconSrc="sap-icon://inbox" />
+                            </f:header>
+                            <f:content>
+                                <VBox id="card2VBox5" alignItems="Stretch" alignContent="Stretch">
+                                    <HBox id="card2HBox3" alignItems="Stretch" alignContent="Stretch">
+                                        <Text id="card2Text5" text="Viewing :" wrapping="false" class="sapUiSmallMargin"/>
+                                        <MultiComboBox id="card2MultiComboBox" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop" width="150px" selectionFinish="" items="{RecordTypeModel>/}">
+                                            <core:Item id="card2Item" text="{RecordTypeModel>recordType}"/>
+                                        </MultiComboBox>
+                                    </HBox>
+                                    <ScrollContainer id="idScrollContainer"
+                                        height="100%"
+                                        width="100%"
+                                        vertical="true"
+                                        focusable="true">
+                                        <List id="card2List" showSeparators="None" noDataText="No Record Found" items="{path: 'Card2RecModel>/'}">
+                                            <CustomListItem id="_IDGenCustomListItem1" highlight="{Card2RecModel>Highlight}">
+                                                <HBox id="_IDGenHBox1" alignItems="Center" class="sapUiSmallMarginBeginEnd">
+                                                    <VBox id="_IDGenVBox2">
+                                                        <Title id="card2TitleName" level="H3" class="id_bold" wrapping="true" text="{Card2RecModel>TaskTitle}" />
+                                                        <Text id="card2TextPriority" text="Priority :{Card2RecModel>Priority}" />
+                                                        <Text id="card2TextDue" text="Due :{Card2RecModel>Due}"/>
+                                                        <HBox id="_IDGenHBox111">
+                                                            <Text id="_IDGenText8" text="Product ID :"/>
+                                                            <Text id="card2TextID" class="id_colorblue" text="{Card2RecModel>RecordInfo/RecordId}"/>
+                                                        </HBox>
+                                                        <Text id="card2TextDescription" text=" Description :{Card2RecModel>RecordInfo/ObjectDescr}"/>
+                                                        <Text id="card2TextLastSeen" class="" text="{Lastseen}"/>
+                                                    </VBox>
+                                                    <Button id="_IDGenButton1" text="View" type="Default" press="onPressView"></Button>
+                                                </HBox>
+                                              
+                                            </CustomListItem>
+                                    </List>
+                                        
+                                    </ScrollContainer>
+                                    
+                                </VBox>
+
+                            </f:content>
+                        </f:Card>
+                    <Button id="_IDGenButton2" text="product" press="onPress"></Button>
+                    </VBox>
+                    <VBox id="MiddelPanel" class="sapUiSmallMarginBeginEnd" width="70%">
+                        <f:Card id="QuickSearchCard">
+                            <f:header>
+                                <card:Header id="IdCardHeader" title="Quick Search"/>
+                            </f:header>
+                            <f:content>
+                                <!-- <Text text="" id="Qs"/> -->
+                                <smartFilterBar:SmartFilterBar id="smartFilterBar" useToolbar="false" entitySet="ObjectHeader">
+                                    <smartFilterBar:controlConfiguration>
+                                        <smartFilterBar:ControlConfiguration id="objectTypeID" key="ObjectType" index="1" visibleInAdvancedArea="true" />
+                                        <smartFilterBar:ControlConfiguration id="recordTypeID" key="RecordId" index="2" visibleInAdvancedArea="true" />
+                                        <smartFilterBar:ControlConfiguration id="descrptionID" key="ObjectDescr" index="3" visibleInAdvancedArea="true" />
+                                        <smartFilterBar:ControlConfiguration id="interactiongOrganizationID" key="InteractingOrgId" index="4" visibleInAdvancedArea="true" />
+                                        <smartFilterBar:ControlConfiguration id="keyDateID" key="KeyDate" index="5" visibleInAdvancedArea="true" conditionType="sap.ui.comp.config.condition.DateRangeType" />
+                                        <smartFilterBar:ControlConfiguration id="lifeCycleStatusID" key="StatusId" index="6" visibleInAdvancedArea="true" />
+                                    </smartFilterBar:controlConfiguration>
+                                </smartFilterBar:SmartFilterBar>
+                            </f:content>
+                        </f:Card>
+                            <f:Card id="_IDGenCard21" class="sapUiSmallMarginTop">
+                                <f:header>
+                                    <card:Header id="IdCardHeaderViewOnTask" title="Overview on Task"/>
+                                </f:header>
+                                <f:content>
+
+                                    <VBox id="_IDGenVBox4yy" class="sapUiSmallMargin" alignItems="Stretch" width="95%">
+                                    
+
+                                        <smartFilterBar:SmartFilterBar id="smartFilterBars" pendingChange="onSmartChange" useToolbar="false" entitySet="ObjectHeader" header="Overview on Task">
+                                            <smartFilterBar:controlConfiguration>
+                                                <smartFilterBar:ControlConfiguration change="onSmartChange" id="objectTypeOverViewID" key="ObjectType" index="1" visibleInAdvancedArea="true" />
+                                                <smartFilterBar:ControlConfiguration change="onSmartChange" id="recordTypeOverViewID" key="RecordId" index="2" visibleInAdvancedArea="true" />
+                                                <smartFilterBar:ControlConfiguration change="onSmartChange" id="lifeCycleStatusOverViewID" key="StatusId" index="3" visibleInAdvancedArea="true" />
+                                                <smartFilterBar:ControlConfiguration change="onSmartChange" id="workflowOverViewID" key="WorkflowType" index="4" visibleInAdvancedArea="true" />
+                                                <smartFilterBar:ControlConfiguration change="onSmartChange" id="agentOverViewID" key="CreateAgent" index="5" visibleInAdvancedArea="true"/>
+                                            </smartFilterBar:controlConfiguration>
+                                        </smartFilterBar:SmartFilterBar>
+
+                                        <HBox id="_IDGenHBoxSt" class="sapUiSmallMarginTop">
+                                            <VBox id="chart1CardID" width="50%" height="auto" >
+                                                <f:Card id="_IDGenCarder4" >
+                                                    <f:header>
+                                                        <card:Header id="_IDGenHeadere6" title="Open Items" subtitle="By Priority 35" iconSrc="sap-icon://overflow" />
+                                                    </f:header>
+                                                    <f:content >
+                                                        <viz:VizFrame id="idpiechartPriority"  uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
+                                                                                                plotArea:{
+                                                                                                                    dataLabel:{visible: true}
+                                                                                                        },
+                                                                                                                    title : {text:'Priority'}
+                                                                                                    }">
+                                                            <viz:dataset>
+                                                                <viz.data:FlattenedDataset id="flattenData" data="{PriorityChart>/}">
+                                                                    <viz.data:dimensions>
+                                                                        <viz.data:DimensionDefinition id="_IDGenDimensionDefinition1" name="priority" value="{PriorityChart>priority}" />
+                                                                    </viz.data:dimensions>
+                                                                    <viz.data:measures>
+                                                                        <viz.data:MeasureDefinition id="_IDGenMeasureDefinition1" name="priorityCount" value="{PriorityChart>priorityCount}" />
+                                                                    </viz.data:measures>
+                                                                </viz.data:FlattenedDataset>
+                                                            </viz:dataset>
+
+                                                            <viz:feeds>
+                                                                <viz.feeds:FeedItem id="_IDGenFeedItem1" uid="size" type="Measure" values="priorityCount" />
+                                                                <viz.feeds:FeedItem id="_IDGenFeedItem2" uid="color" type="Dimension" values="priority" />
+                                                            </viz:feeds>
+                                                        </viz:VizFrame>
+                                                    </f:content>
+                                                </f:Card>
+                                            </VBox>
+                                            <VBox id="chart2cardID" width="50%" height="auto" >
+                                                <f:Card id="_IDGenCasrder4" class="sapUiSmallMarginBegin" >
+                                                    <f:header>
+                                                        <card:Header id="_IDGensHeadere6" title="Open Items" subtitle="By Status 35" iconSrc="sap-icon://overflow" />
+                                                    </f:header>
+                                                    <f:content >
+                                                        <viz:VizFrame id="idpiechartStatus" uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
+                                                                                                plotArea:{
+                                                                                                                    dataLabel:{visible: true}
+                                                                                                        },
+                                                                                                                    title : {text:'Status'}
+                                                                                                    }">
+
+                                                            <viz:dataset>
+                                                                <viz.data:FlattenedDataset id="idflattenData" data="{StatusChart>/}">
+                                                                    <viz.data:dimensions>
+                                                                        <viz.data:DimensionDefinition id="idStatus" name="status" value="{StatusChart>status}" />
+                                                                    </viz.data:dimensions>
+                                                                    <viz.data:measures>
+                                                                        <viz.data:MeasureDefinition id="idStatusVal" name="statusCount" value="{StatusChart>statusCount}" />
+                                                                    </viz.data:measures>
+                                                                </viz.data:FlattenedDataset>
+                                                            </viz:dataset>
+
+                                                            <viz:feeds>
+                                                                <viz.feeds:FeedItem id="idPriorityFlag" uid="size" type="Measure" values="statusCount" />
+                                                                <viz.feeds:FeedItem id="idPriorityCountFlag" uid="color" type="Dimension" values="status" />
+                                                            </viz:feeds>
+                                                        </viz:VizFrame>
+                                                    </f:content>
+                                                </f:Card>
+                                            </VBox>
+                                        </HBox>
+                                        <HBox id="_IDGenHBox11" class="sapUiSmallMarginTop">
+                                            <VBox id="chart3cardID" width="50%" height="auto">
+                                                <f:Card id="_IDGenCarder4gf">
+                                                    <f:header>
+                                                        <card:Header id="_IDGenHeadter22" title="Registered Products" subtitle="By Counrty" iconSrc="sap-icon://overflow" />
+                                                    </f:header>
+                                                    <f:content>
+                                                        <core:HTML id="_IDGenHTM1L21" afterRendering="onRender2" content=" &lt;canvas id=&quot;Bar&quot;&gt;&lt;/canvas&gt; "></core:HTML>
+                                                    </f:content>
+                                                </f:Card>
+                                            </VBox>
+                                        </HBox>
+                                    </VBox>
+                                </f:content>
+                            </f:Card>
+                    </VBox>
+                    <VBox id="IDQuickLinks">
+                        <f:Card id="QuickLink">
+                            <f:header>
+                                <card:Header id="QuickLinkHrader" title="Quick Links" subtitle="" iconSrc="" />
+                            </f:header>
+                            <f:content>
+                                <List showSeparators="None" id="QuickLinkList" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+                                    <CustomListItem id="QuickLinkCLI">
+                                        <VBox id="QuickLinkContent">
+                                            <HBox id="EventHBox" alignItems="Center">
+                                                <core:Icon id="QuickLinkEvent" src="sap-icon://accelerated" class="sapUiMediumMarginBottom"></core:Icon>
+                                                <Link id="IDEvents" text="Events View" class="sapUiMediumMarginBottom sapUiSmallMarginBegin" press="ohandle_press"/>
+                                            </HBox>
+                                            <HBox id="RelationHBox" alignItems="Center">
+                                                <core:Icon id="QuickLinkReationlist" src="sap-icon://org-chart" class="sapUiMediumMarginBottom"></core:Icon>
+                                                <Text id="IDRelationList" text="Relation List" class="sapUiMediumMarginBottom sapUiSmallMarginBegin"/>
+                                            </HBox>
+                                            <HBox id="MarketingHBox" alignItems="Center">
+                                                <core:Icon id="QuickLinkMarketingauthorizationmapview" src="sap-icon://globe" class="sapUiMediumMarginBottom"></core:Icon>
+                                                <Text id="IDMaketingAuthorizationMapView" text="Marketing Authorization Map View" class="sapUiMediumMarginBottom sapUiSmallMarginBegin" />
+                                            </HBox>
+                                            <HBox id="ResonabilityHBox" alignItems="Center">
+                                                <core:Icon id="QuickLinkResponsibilityAssignment" src="sap-icon://leads" class="sapUiMediumMarginBottom"></core:Icon>
+                                                <Text id="IDResponsibilityAssignment" text="Responsibilty assignment" class="sapUiMediumMarginBottom sapUiSmallMarginBegin"/>
+                                            </HBox>
+                                            <HBox id="ProductHBox" alignItems="Center">
+                                                <core:Icon id="QuickLinkProductFamily" src="sap-icon://group-2" class="sapUiMediumMarginBottom "></core:Icon>
+                                                <Text id="IDProductFamily" text="Product family" class="sapUiMediumMarginBottom sapUiSmallMarginBegin" />
+                                            </HBox>
+                                        </VBox>
+                                    </CustomListItem>
+                                </List>
+                            </f:content>
+                        </f:Card>
+                        
+                    </VBox>
+                </HBox>
+                </content>
+            </Panel>
+            </Page>
+        </App>
+</mvc:View>
