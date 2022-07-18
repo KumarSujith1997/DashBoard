@@ -15,7 +15,7 @@ sap.ui.define([
     "use strict";
     return {
     
-        //Global Data
+        // Global Data
          Init:function(oProductInfoController)
          {
            oProductInfoController._oDynamicModel=oProductInfoController.getOwnerComponent().getModel();
