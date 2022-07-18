@@ -27,9 +27,9 @@
                                 semanticObject: "ManageProductInfo",
                                 action: "display"
                                 },
-                                params: {
-                                "RecordID": "00000800.COR.001"
-                                }
+                                // params: {
+                                // "RecordID": "00000800.COR.001"
+                                // }
                                 })) || "";
                                 /*oCrossAppNavigator.toExternal({
                                 target: {
