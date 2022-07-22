@@ -16,9 +16,14 @@
             this.counter=4;
             utility.Init(this); 
             utility.objectHeaderData(this);
+            utility.objectTypeFilterData(this);
+            utility.recordTypeFilterData(this);
+            utility.InteractingOrgFilterData(this);
+            utility.InteractionPurposeFilterData(this);
+            
          },
          onPress:function(oEvent){
-             debugger;
+             
             // var sObjectUuid = oEvent.getSource().getParent().getParent().getBindingContext('relModel').getProperty('RelObjectUuid');
                                 // navigate to product information application
                                 var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
@@ -44,7 +49,6 @@
           onSelectionChange:function()
           {
             var sIconTabRes=this.getView().byId("card1conTabHeader").oSelectedItem.getProperty("text"),
-            amultiComboRes=[]=this.getView().byId("card1MultiComboBox").getSelectedItems().map(m=>m.getProperty("text")),
             aFilter=[],
             aSorter=[];
             switch(sIconTabRes) 
@@ -52,9 +56,6 @@
                 case "My favorites":
                     utility.resetModel(this);
                     aFilter.push(new Filter("IsFavorite",FilterOperator.EQ,true));
-                    amultiComboRes.map((item)=>{
-                         aFilter.push(new Filter("RecordTypeText",FilterOperator.EQ,item))
-                     });
                     var oListItems = this.getView().byId('card1List').getBinding("items");
                     oListItems.filter(aFilter);
                     utility.setLength(this);
@@ -62,9 +63,6 @@
                 case "My recent records":
                     utility.resetModel(this);
                     aSorter.push(new Sorter("ChangedOn",true,false));
-                    amultiComboRes.map((item)=>{
-                        aFilter.push(new Filter("RecordTypeText",FilterOperator.EQ,item))
-                    });
                     var oListItems = this.getView().byId('card1List').getBinding("items");
                     // oList.filter().filters =null;
                     oListItems.filter(aFilter);
@@ -77,7 +75,7 @@
           },
           Buttonclick:function(oEvent)
           {
-              debugger;
+            
               var modelLen=this.getView().byId('card1List').getBinding("items").oList.length;
               if(oEvent.getSource().getId() == "container-dashboard.dashboard---App--idF")
               {
@@ -113,7 +111,7 @@
           },
           onSmartChange:function(oEvent)
           {
-            debugger;
+            
           },
          /**
         * To fetch X-CSRF token
@@ -135,7 +133,21 @@
                 }
             });
             return sToken;
+        },
+
+        onSearch: function(oEvent) {
+
+            this.oFilterBar = this.byId("_IDGenFilterBar1");
+        //     debugger;
+        //     var multiInput = sap.ui.getCore().byId("_IDGenFilterBar1");
+        //     var otoken = new sap.m.Token({ 
+        //     key: 'myDefaultFilterValue', 
+        //     text: 'myDefaultFilterValue'
+        // });
+        //     multiInput.setTokens([otoken]);
+        
         }
+        
       });
     }
   );

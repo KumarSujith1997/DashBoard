@@ -26,7 +26,7 @@ sap.ui.define([
          {
             var url = `/ObjectHeader`,
             aFilter=[];
-            aFilter.push(new Filter("CreatedBy",FilterOperator.EQ,"CB9980000040"));
+            aFilter.push(new Filter("CreatedBy",FilterOperator.EQ,"CB9980000283"));
             oProductInfoController._oDynamicModel.read(url, {                                 
             filters: aFilter,            
             success: function (oResult) {
@@ -256,7 +256,134 @@ sap.ui.define([
                 aLength.oList[i].visible=true;
             } 
             oProductInfoController.getView().getModel("Card1RecModel").setProperty("/",aLength.oList); 
-         }
+         },
+         objectTypeFilterData:function(oProductInfoController)
+         {
+            var url = `/ObjectHeader`
+            oProductInfoController._oDynamicModel.read(url, {            
+            success: function (oResult) {
+                debugger;
+                var aResults = oResult.results;
+                var key="ObjectTypeText";
+                var oList =    aResults.reduce(function(ObjTypes, x) {
+                    (ObjTypes[x[key]] = ObjTypes[x[key]] || []).push(x);
+                    
+                    return ObjTypes;
+                    }, {
+
+                    });
+                    oProductInfoController._aObjectType = [];
+            for (var i in oList){
+                var ObjlistType = {
+                    ObjTypes : i,
+                    ObjTypeid : oList[i][0].ObjectType
+                }
+                oProductInfoController._aObjectType.push(ObjlistType);
+                }
+                var ObjtypeModel=new sap.ui.model.json.JSONModel();  
+                ObjtypeModel.setData(oProductInfoController._aObjectType);
+                oProductInfoController.byId("one").setModel(ObjtypeModel,"objtype");
+                oProductInfoController.byId("inboxid").setModel(ObjtypeModel,"objtype");
+            }.bind(this),
+            error: function (oError) {
+            }
+            });
+         },
+
+         recordTypeFilterData:function(oProductInfoController)
+         {
+            var url = `/ObjectHeader`
+            oProductInfoController._oDynamicModel.read(url, {            
+            success: function (oResult) {
+                debugger;
+                var aResults = oResult.results;
+                var key="RecordTypeText";
+                var oList =    aResults.reduce(function(ObjTypes, x) {
+                    (ObjTypes[x[key]] = ObjTypes[x[key]] || []).push(x);
+                    return ObjTypes;
+                    }, {
+                    });
+                    oProductInfoController._aObjectType = [];
+            for (var i in oList){
+                var ObjlistType = {
+                    ObjTypes : i,
+                    ObjTypeid : oList[i][0].RecordType
+                }
+                oProductInfoController._aObjectType.push(ObjlistType);
+                }
+                var RecordtypeModel=new sap.ui.model.json.JSONModel();  
+                RecordtypeModel.setData(oProductInfoController._aObjectType);
+                oProductInfoController.byId("Two").setModel(RecordtypeModel,"rectyp");
+                oProductInfoController.byId("inboxid2").setModel(RecordtypeModel,"rectyp");
+            }.bind(this),
+            error: function (oError) {
+            }
+            });
+         },
+
+         InteractingOrgFilterData:function(oProductInfoController)
+         {
+            var url = `/ObjectHeader`
+            oProductInfoController._oDynamicModel.read(url, {            
+            success: function (oResult) {
+                debugger;
+                var aResults = oResult.results;
+                var key="InteractingOrgText";
+                var oList = aResults.reduce(function(ObjTypes, x) {
+                    (ObjTypes[x[key]] = ObjTypes[x[key]] || []).push(x);
+                    return ObjTypes;
+                    }, {
+                    });
+                    oProductInfoController._aObjectType = [];
+            for (var i in oList){
+                var ObjlistType = {
+                    ObjTypes : i,
+                    ObjTypeid : oList[i][0].InteractingOrgId
+                }
+                oProductInfoController._aObjectType.push(ObjlistType);
+                }
+                var RecordtypeModel=new sap.ui.model.json.JSONModel();  
+                RecordtypeModel.setData(oProductInfoController._aObjectType);
+                oProductInfoController.byId("Intorg").setModel(RecordtypeModel,"intorg");
+                oProductInfoController.byId("inboxid3").setModel(RecordtypeModel,"intorg");
+            }.bind(this),
+            error: function (oError) {
+            }
+            });
+         },
+
+         InteractionPurposeFilterData:function(oProductInfoController)
+         {
+            var url = `/ObjectHeader`
+            oProductInfoController._oDynamicModel.read(url, {            
+            success: function (oResult) {
+                debugger;
+                var aResults = oResult.results;
+                var key="InteractionPurposeText";
+                var oList = aResults.reduce(function(ObjTypes, x) {
+                    (ObjTypes[x[key]] = ObjTypes[x[key]] || []).push(x);
+                    return ObjTypes;
+                    }, {
+                    });
+                    oProductInfoController._aObjectType = [];
+            for (var i in oList){
+                var ObjlistType = {
+                    ObjTypes : i,
+                    ObjTypeid : oList[i][0].InteractionPurposeId
+                }
+                oProductInfoController._aObjectType.push(ObjlistType);
+                }
+                var RecordtypeModel=new sap.ui.model.json.JSONModel();  
+                RecordtypeModel.setData(oProductInfoController._aObjectType);
+                oProductInfoController.byId("Intprp").setModel(RecordtypeModel,"intprp");
+                oProductInfoController.byId("inboxid4").setModel(RecordtypeModel,"intprp");
+            }.bind(this),
+            error: function (oError) {
+            }
+            });
+         },
+
+         
        
     }
 
