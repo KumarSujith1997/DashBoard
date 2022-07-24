@@ -284,6 +284,7 @@ sap.ui.define([
                 ObjtypeModel.setData(oProductInfoController._aObjectType);
                 oProductInfoController.byId("one").setModel(ObjtypeModel,"objtype");
                 oProductInfoController.byId("inboxid").setModel(ObjtypeModel,"objtype");
+                oProductInfoController.byId("Viz1").setModel(ObjtypeModel,"objtype");
             }.bind(this),
             error: function (oError) {
             }
@@ -315,6 +316,7 @@ sap.ui.define([
                 RecordtypeModel.setData(oProductInfoController._aObjectType);
                 oProductInfoController.byId("Two").setModel(RecordtypeModel,"rectyp");
                 oProductInfoController.byId("inboxid2").setModel(RecordtypeModel,"rectyp");
+                oProductInfoController.byId("Viz2").setModel(RecordtypeModel,"rectyp");
             }.bind(this),
             error: function (oError) {
             }
@@ -346,6 +348,7 @@ sap.ui.define([
                 RecordtypeModel.setData(oProductInfoController._aObjectType);
                 oProductInfoController.byId("Intorg").setModel(RecordtypeModel,"intorg");
                 oProductInfoController.byId("inboxid3").setModel(RecordtypeModel,"intorg");
+                oProductInfoController.byId("Viz3").setModel(RecordtypeModel,"intorg");
             }.bind(this),
             error: function (oError) {
             }
@@ -377,6 +380,7 @@ sap.ui.define([
                 RecordtypeModel.setData(oProductInfoController._aObjectType);
                 oProductInfoController.byId("Intprp").setModel(RecordtypeModel,"intprp");
                 oProductInfoController.byId("inboxid4").setModel(RecordtypeModel,"intprp");
+                oProductInfoController.byId("Viz4").setModel(RecordtypeModel,"intprp");
             }.bind(this),
             error: function (oError) {
             }

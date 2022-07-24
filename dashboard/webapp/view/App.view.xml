@@ -26,41 +26,37 @@
                                                     <fb:filterGroupItems>
                                                         <fb:FilterGroupItem id="_IDGenFilsterGroupItem12" groupName="__$INTERNAL$" name="A" label="Obect Type" partOfCurrentVariant="true" visibleInFilterBar="true">
                                                             <fb:control>
-                                                                <ComboBox id="_IDGenCombosBox12d" placeholder="All" >
-                                                                    <items>
-                                                                                            
-                                                                    </items>
-                                                                </ComboBox>
+                                                                <MultiComboBox id="Viz1" showSecondaryValues="true" width="500px" selectedKeys="MP"
+                                                                    items="{objtype>/}">
+                                                                    <core:ListItem id="_IDGenListItem" key="{objtype>ObjTypeid}" text="{objtype>ObjTypes}" />
+                                                                </MultiComboBox>
                                                             </fb:control>
                                                         </fb:FilterGroupItem>
                                     
                                                     <fb:FilterGroupItem id="_IDGesnFilterGroupIte2m2" groupName="__$INTERNAL$" name="B" label="Record Type" labelTooltip="Tooltip Example"  partOfCurrentVariant="true" visibleInFilterBar="true">
                                                         <fb:control>
-                                                            <ComboBox id="_IDGesnComboBo2x1" placeholder="All"  >
-                                                                 <items>
-                                                                                            
-                                                                </items>
-                                                                </ComboBox>
+                                                            <MultiComboBox id="Viz2" showSecondaryValues="true" width="500px" selectedKeys="COR"
+                                                                items="{rectyp>/}">
+                                                                <core:ListItem id="_IDGenListItemviz" key="{rectyp>ObjTypeid}" text="{rectyp>ObjTypes}" />
+                                                            </MultiComboBox>
                                                         </fb:control>
                                                     </fb:FilterGroupItem>
                                                                                 
                                                     <fb:FilterGroupItem id="_IDGensFilterG2roupItem3" groupName="G1" groupTitle="Group1" name="A1" label="Interacting Organisation" labelTooltip="Tooltip GroupItem Example" visibleInFilterBar="true">
                                                         <fb:control>
-                                                            <ComboBox id="_IDGesnComboBo2x12" placeholder="All">
-                                                                <items>
-                                                                                            
-                                                                </items>
-                                                            </ComboBox>
+                                                            <MultiComboBox id="Viz3" showSecondaryValues="true" width="500px" selectedKeys="IDMP_COR"
+                                                                items="{intorg>/}">
+                                                                <core:ListItem id="_IDGenListItem2367" key="{intorg>ObjTypeid}" text="{intorg>ObjTypes}" />
+                                                            </MultiComboBox>
                                                         </fb:control>
                                                     </fb:FilterGroupItem>
 
                                                     <fb:FilterGroupItem id="_IDGenFilt2erGrosupItem4" groupName="G1" groupTitle="Group1" name="B1" label="Interaction Purpose" visibleInFilterBar="true">
                                                         <fb:control>
-                                                            <ComboBox id="_IDGenComboB2sox13" placeholder="All">
-                                                                <items>
-                                                                                            
-                                                                </items>
-                                                            </ComboBox>
+                                                            <MultiComboBox id="Viz4" showSecondaryValues="true" width="500px" selectedKeys="IDM"
+                                            items="{intprp>/}">
+                                            <core:ListItem id="_IDGenListItem23455" key="{intprp>ObjTypeid}" text="{intprp>ObjTypes}" />
+                                        </MultiComboBox>
                                                         </fb:control>
                                                     </fb:FilterGroupItem>
                                                     </fb:filterGroupItems>
