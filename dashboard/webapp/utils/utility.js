@@ -30,14 +30,13 @@ sap.ui.define([
             oProductInfoController._oDynamicModel.read(url, {                                 
             filters: aFilter,            
             success: function (oResult) {
-                debugger;
                 var aResults = oResult.results;
                 aResults.map(m=>m.visible=true);
                 var oInitialModel=new sap.ui.model.json.JSONModel();  
                 oInitialModel.setData(aResults);
                 oProductInfoController.getView().setModel(oInitialModel,"Card1RecModel");
                 var cardLen=oProductInfoController.getView().byId('card1List').getBinding("items").aIndices.length;
-                if(cardLen>4)
+                if(cardLen>5)
                 {
                     this.setLength(oProductInfoController); 
                 }
@@ -220,24 +219,24 @@ sap.ui.define([
                 return "No Date Found";
             }
         },
-        setLength:function(oProductInfoController,b=4)
+        setLength:function(oProductInfoController,b=5)
          {
             this.resetModel(oProductInfoController);
             var aLength=oProductInfoController.getView().byId('card1List').getBinding("items"),
             aDisplay=[];
-            if(aLength.oList.length>4 && aLength.aIndices.length>4)
+            if(aLength.oList.length>5 && aLength.aIndices.length>5)
             {
                 for(var i=0;i<aLength.aIndices.length;i++)
                 {
                      aDisplay.push(aLength.oList[aLength.aIndices[i]]);
                 } 
-                debugger;
+                
                 var aTemparr=[],m=b;
-                for(var j=b-1;j>=m-4;j--)
+                for(var j=b-1;j>=m-5;j--)
                 {
                      aTemparr.push(j)
                 }
-                debugger;
+         
                 for(var i=0;i<aDisplay.length;i++)
                 {
                      if(!(aTemparr.includes(i)))
@@ -262,7 +261,7 @@ sap.ui.define([
             var url = `/ObjectHeader`
             oProductInfoController._oDynamicModel.read(url, {            
             success: function (oResult) {
-                debugger;
+                
                 var aResults = oResult.results;
                 var key="ObjectTypeText";
                 var oList =    aResults.reduce(function(ObjTypes, x) {
@@ -296,7 +295,7 @@ sap.ui.define([
             var url = `/ObjectHeader`
             oProductInfoController._oDynamicModel.read(url, {            
             success: function (oResult) {
-                debugger;
+                
                 var aResults = oResult.results;
                 var key="RecordTypeText";
                 var oList =    aResults.reduce(function(ObjTypes, x) {
@@ -328,7 +327,7 @@ sap.ui.define([
             var url = `/ObjectHeader`
             oProductInfoController._oDynamicModel.read(url, {            
             success: function (oResult) {
-                debugger;
+               
                 var aResults = oResult.results;
                 var key="InteractingOrgText";
                 var oList = aResults.reduce(function(ObjTypes, x) {
@@ -360,7 +359,7 @@ sap.ui.define([
             var url = `/ObjectHeader`
             oProductInfoController._oDynamicModel.read(url, {            
             success: function (oResult) {
-                debugger;
+                
                 var aResults = oResult.results;
                 var key="InteractionPurposeText";
                 var oList = aResults.reduce(function(ObjTypes, x) {
@@ -385,9 +384,7 @@ sap.ui.define([
             error: function (oError) {
             }
             });
-         },
-
-         
+         }, 
        
     }
 
