@@ -1,4 +1,4 @@
-  sap.ui.define(
+sap.ui.define(
     [
         "sap/ui/core/mvc/Controller",
         "sap/ui/model/Filter",
@@ -47,12 +47,11 @@
                                 sap.m.URLHelper.redirect(url, true);
              
          },
-          onSelectionChange:function(oEvent)
+          onSelectionChange:function()
           
           {
             // debugger;
             var sIconTabRes=this.getView().byId("card1conTabHeader").oSelectedItem.getProperty("text"),
-            aFilter=[],
             aSorter=[];
             switch(sIconTabRes) 
             {
@@ -60,61 +59,21 @@
                     utility.resetModel(this);
                     aSorter.push(new Sorter("ChangedOn",true,false));
                     var oListItems = this.getView().byId('card1List').getBinding("items");
-                    oListItems.filter().filters =null;
-                    oListItems.filter(aFilter);
+                    this.onSearch();
                     oListItems.sort(aSorter);
                     utility.setLength(this);
                     // onSearch();
                   break;
                 case "My Recent favorites":
                     utility.resetModel(this);
-                    aFilter.push(new Filter("IsFavorite",FilterOperator.EQ,true));
+                    this.onSearch();
                     var oListItems = this.getView().byId('card1List').getBinding("items");
-                    oListItems.filter(aFilter);
                     utility.setLength(this);
                     // this.onSearch();
                   break;
-                
-                    // default:
-            //       // code block
             }  
           },
-        //   Buttonclick:function(oEvent)
-        //   {
-            
-        //       var modelLen=this.getView().byId('card1List').getBinding("items").oList.length;
-        //       if(oEvent.getSource().getId() == "container-dashboard.dashboard---App--idF")
-        //       {
-        //          if( this.counter<=modelLen)
-        //          {
-        //              this.counter+=4;
-        //              if(this.counter<=modelLen)
-        //              {
-        //                 utility.setLength(this,this.counter);
-        //              }
-        //              else
-        //              {
-        //                 utility.setLength(this,modelLen);
-        //              }
-                    
-        //          }
-                
-
-        //       }
-        //       else if(oEvent.getSource().getId() == "container-dashboard.dashboard---App--idB")
-        //       {
-        //           if(this.counter>4)
-        //           {
-        //             this.counter-=4;
-        //              utility.setLength(this,this.counter);
-        //           }
-        //           else
-        //           {
-        //               utility.setLength(this,4)
-        //           }
-                        
-        //       }
-        //   },
+        //   
           onSmartChange:function(oEvent)
           {
             
@@ -142,6 +101,59 @@
         },
 
         onSearch: function(oEvent) {
+            debugger;
+            var arr=[this.getView().byId('one').mProperties.selectedKeys,
+            this.getView().byId('Two').mProperties.selectedKeys,
+            this.getView().byId('Intorg').mProperties.selectedKeys,
+            this.getView().byId('Intprp').mProperties.selectedKeys
+            ],
+            // aFilters=["Object Type","Record Type","Interacting Organization","Interaction Purpose"] ,//oEvent.mParameters.selectionSet.map(d=>d.mProperties.selectedKeys),
+            aFilter=[];
+            for (var i=0; i<arr.length; i++)
+                {
+                    if (arr[i].length!=0){
+                        var sfilterObj=`${i}`;
+                        // aFilter.push(new Filter(sfilterObj,FilterOperator.EQ,true));
+                    for(let j=0; j<arr[i].length; j++){
+                        var oListItems = this.getView().byId('card1List').getBinding("items");
+                    
+                        switch(sfilterObj){
+                            case '0':
+                                  aFilter.push(new Filter("ObjectType",FilterOperator.EQ,arr[i][j]));
+                                //   oListItems.filter(aFilter);
+                                break;
+                            case '1' :
+                                aFilter.push(new Filter("RecordType",FilterOperator.EQ,arr[i][j]));
+                                //   oListItems.filter(aFilter);
+                                break; 
+                            case '2' :
+                                aFilter.push(new Filter("InteractingOrgId",FilterOperator.EQ,arr[i][j]));
+                                //   oListItems.filter(aFilter);
+                                break; 
+                            case '3' :
+                            aFilter.push(new Filter("InteractionPurposeId",FilterOperator.EQ,arr[i][j]));
+                            // oListItems.filter(aFilter);
+                                break;    
+                        }
+                        }
+                    }
+                    
+                }
+                
+            if(this.getView().byId('card1conTabHeader').oSelectedItem.getProperty("text")=="My Recent favorites" )
+            {
+            
+                aFilter.push(new Filter("IsFavorite",FilterOperator.EQ,true));
+                oListItems.filter(aFilter);
+            }
+            else
+            {
+                oListItems.filter(aFilter);
+            }
+        },
+
+        onInboxSearch:function(oEvent){
+            debugger;
             var arr=[]= oEvent.mParameters.selectionSet.map(d=>d.mProperties.selectedKeys),
             aFilter=[];
             
@@ -152,38 +164,30 @@
                         var sfilterObj=oEvent.getParameter("selectionSet")[i].getBindingInfo("items").model;
                         // aFilter.push(new Filter(sfilterObj,FilterOperator.EQ,true));
                     for(let j=0; j<arr[i].length; j++){
-                        var oListItems = this.getView().byId('card1List').getBinding("items");
+                        var oListItems = this.getView().byId('card2List').mBindingInfos.items;
                     
                         switch(sfilterObj){
                             case 'objtype':
                                   aFilter.push(new Filter("ObjectType",FilterOperator.EQ,arr[i][j]));
-                                  oListItems.filter(aFilter);
+                                //   oListItems.filters(aFilter);
                                 break;
                             case 'rectyp' :
                                 aFilter.push(new Filter("RecordType",FilterOperator.EQ,arr[i][j]));
-                                  oListItems.filter(aFilter);
+                                //   oListItems.filters(aFilter);
                                 break; 
                             case 'intorg' :
                                 aFilter.push(new Filter("InteractingOrgId",FilterOperator.EQ,arr[i][j]));
-                                  oListItems.filter(aFilter);
+                                //   oListItems.filters(aFilter);
                                 break; 
                             case 'intprp' :
                             aFilter.push(new Filter("InteractionPurposeId",FilterOperator.EQ,arr[i][j]));
-                            oListItems.filter(aFilter);
+                            // oListItems.filters(aFilter);
                                 break;    
                         }
                         debugger;
                         }
                     }
                 }
-        //     debugger;
-        //     var multiInput = sap.ui.getCore().byId("_IDGenFilterBar1");
-        //     var otoken = new sap.m.Token({ 
-        //     key: 'myDefaultFilterValue', 
-        //     text: 'myDefaultFilterValue'
-        // });
-        //     multiInput.setTokens([otoken]);
-        
         }
         
       });
